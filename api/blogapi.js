@@ -92,13 +92,29 @@ router.delete('/delete/:id', async (req, res) => {
 
 router.post('/getBlog', async (req, res) => {
     try {
-        const getData = await Blog.findById(req.body.id);
-        console.log(getData);
-        return res.send({ getdata });
-    } catch (error) {
+        const bcd = await req.body.my_id
+        const getData = await Blog.findById(bcd);
 
+        return res.send({ datas: getData });
+    } catch (error) {
+        console.log('error:::', error);
+        return res.send({ err: error })
     }
 })
+// router.put('/update/:id',async (req,res)=>{
+//     try {
+//         const updated=await Blog.findByIdAndUpdate(
+//             req.params.id,
+//             req.body
+
+//         );
+        
+//     } catch (error) {
+//         console.log('error:::', error);
+//         return res.send({ err: error })
+        
+//     }
+// })
 
 
 
